@@ -25,7 +25,8 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: List[Union[str, AnyHttpUrl]] = [
         "http://localhost:3000",  # React default port
         "http://localhost:8000",  # Backend API
-        "http://localhost"
+        "http://localhost",
+        "https://main.d12dpajo88p4ah.amplifyapp.com"
     ]
     
     # Auth0 Settings
