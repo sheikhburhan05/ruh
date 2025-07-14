@@ -22,12 +22,7 @@ class Settings(BaseSettings):
         return f"postgresql+psycopg2://{values['DATABASE_USERNAME']}:{values['DATABASE_PASSWORD']}@{values['DATABASE_HOST']}:{values['DATABASE_PORT']}/{values['DATABASE_NAME']}"
     
     # CORS Settings
-    BACKEND_CORS_ORIGINS: List[Union[str, AnyHttpUrl]] = [
-        "http://localhost:3000",  # React default port
-        "http://localhost:8000",  # Backend API
-        "http://localhost",
-        "https://main.d12dpajo88p4ah.amplifyapp.com"
-    ]
+    BACKEND_CORS_ORIGINS: List[Union[str, AnyHttpUrl]] = ["*"]  # Allow all origins
     
     # Auth0 Settings
     AUTH0_DOMAIN: str = "dev-mqlgn75f2c8ij4if.us.auth0.com"
