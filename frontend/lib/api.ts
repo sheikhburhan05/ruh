@@ -52,7 +52,7 @@ export interface ClientFilters {
 
 export const clientsApi = {
   getAll: async (filters?: ClientFilters & { page?: number, page_size?: number }) => {
-    const response = await api.get<PaginatedResponse<Client>>('/clients', { params: filters });
+    const response = await api.get<PaginatedResponse<Client>>('/clients/', { params: filters });
     return response.data;
   },
 
@@ -69,7 +69,7 @@ export const clientsApi = {
 
 export const appointmentsApi = {
   getAll: async (filters?: AppointmentFilters & { page?: number, page_size?: number }) => {
-    const response = await api.get<PaginatedResponse<Appointment>>('/appointments', { params: filters });
+    const response = await api.get<PaginatedResponse<Appointment>>('/appointments/', { params: filters });
     return response.data;
   },
 
