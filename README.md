@@ -5,12 +5,14 @@ A fullstack application for managing wellness clinic clients and appointments, f
 ## Features
 
 - **Client Management**
+
   - View and search clients
   - Add new clients
   - Paginated client list
   - Real time search functionality
 
 - **Appointment Management**
+
   - Schedule new appointments
   - View and filter appointments by date range and status
   - Update appointment status (Scheduled, Confirmed, Completed, Cancelled)
@@ -27,6 +29,7 @@ A fullstack application for managing wellness clinic clients and appointments, f
 ## Tech Stack
 
 ### Backend
+
 - Python FastAPI (3.11+) - Modern, fast web framework for building APIs
 - PostgreSQL - Robust relational database
 - SQLAlchemy (ORM) - Database interaction and management
@@ -35,6 +38,7 @@ A fullstack application for managing wellness clinic clients and appointments, f
 - Auth0 - Authentication and authorization provider
 
 ### Frontend
+
 - Next.js 14 (App Router) - React framework with server side rendering
 - TypeScript - Type-safe JavaScript
 - Tailwind CSS - Utility-first CSS framework
@@ -46,6 +50,7 @@ A fullstack application for managing wellness clinic clients and appointments, f
 ## Setup Instructions
 
 ### Prerequisites
+
 - Python 3.11+
 - Node.js 18+
 - PostgreSQL
@@ -54,6 +59,7 @@ A fullstack application for managing wellness clinic clients and appointments, f
 ### Backend Setup
 
 1. Create and activate a virtual environment:
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Unix/macOS
@@ -62,12 +68,14 @@ source .venv/bin/activate  # On Unix/macOS
 ```
 
 2. Install dependencies:
+
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
 
 3. Create a `.env` file in the backend directory:
+
 ```env
 # Database Configuration
 DATABASE_USERNAME=
@@ -77,7 +85,7 @@ DATABASE_NAME=
 DATABASE_PORT=
 
 # CORS
-BACKEND_CORS_ORIGINS=["http://localhost:3000","http://ruh-fe.s3-website-us-east-1.amazonaws.com"]
+BACKEND_CORS_ORIGINS=["http://localhost:3000","https://main.d12dpajo88p4ah.amplifyapp.com"]
 
 # Auth0 Configuration
 AUTH0_AUDIENCE=
@@ -89,6 +97,7 @@ AUTH0_CLIENT_SECRET=
 ```
 
 4. Configure Database:
+
    - Update database configuration in `app/core/config.py` if needed
    - Default configuration uses:
      - Host: postgresql-199561-0.cloudclusters.net
@@ -96,11 +105,13 @@ AUTH0_CLIENT_SECRET=
      - Database: ruh
 
 5. Run migrations:
+
 ```bash
 PYTHONPATH=$PYTHONPATH:. alembic upgrade head
 ```
 
 6. Start the backend server:
+
 ```bash
 uvicorn app.main:app --reload
 ```
@@ -110,6 +121,7 @@ The API will be available at `http://localhost:8000`. Visit `/docs` for the Swag
 ### Frontend Setup
 
 1. Install dependencies:
+
 ```bash
 cd frontend
 npm install
@@ -118,6 +130,7 @@ yarn install
 ```
 
 2. Create a `.env.local` file in the frontend directory:
+
 ```env
 # API Configuration
 NEXT_PUBLIC_BE_URL=http://52.44.17.108
@@ -129,6 +142,7 @@ NEXT_PUBLIC_AUTH0_DOMAIN=
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 # or
@@ -143,7 +157,7 @@ The frontend will be available at `http://localhost:3000`.
 .
 ├── backend/               # FastAPI application
 │   ├── alembic/          # Database migration files
-│   ├── app/              
+│   ├── app/
 │   │   ├── api/          # API routes and endpoints
 │   │   ├── core/         # Core configurations and auth
 │   │   ├── db/           # Database models and session
@@ -170,29 +184,34 @@ The frontend will be available at `http://localhost:3000`.
 The platform provides the following API endpoints:
 
 ### Authentication
+
 - `/api/auth/login` - Redirect to Auth0 login
 - `/api/auth/logout` - Handle logout
 - `/api/auth/callback` - Auth0 callback handling
 - `/api/auth/me` - Get user profile
 
 You can use the following testing credentials to login:
+
 - Email: sheikhburhan055@gmail.com
 - Password: Test@123
 
 Alternatively, you can continue with Google for login, it auto create new account.
 
 ### Clients
+
 - `GET /api/v1/clients` - List clients (with pagination)
 - `POST /api/v1/clients` - Create a new client
 - `GET /api/v1/clients/:id` - Get client details
 
 ### Appointments
+
 - `GET /api/v1/appointments` - List appointments (with pagination and filters)
 - `POST /api/v1/appointments` - Create a new appointment
 - `PUT /api/v1/appointments/:id` - Update an appointment
 - `GET /api/v1/appointments/:id` - Get appointment details
 
 Query Parameters for Appointments:
+
 - `search`: Search appointments
 - `start_date`: Filter by start date (YYYY-MM-DD)
 - `end_date`: Filter by end date (YYYY-MM-DD)
@@ -205,6 +224,7 @@ Query Parameters for Appointments:
 ### Available Scripts
 
 Frontend:
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
@@ -212,6 +232,7 @@ Frontend:
 - `npm run format` - Format code with Prettier
 
 Backend:
+
 - Database migrations:
   ```bash
   # Generate new migration
@@ -225,6 +246,7 @@ Backend:
 ## Assumptions & Design Decisions
 
 1. Business Logic:
+
    - All dates are stored and handled in UTC
    - User authentication and authorization through Auth0
 
@@ -249,6 +271,7 @@ Backend:
 ## Future Improvements
 
 1. Feature Enhancements
+
    - Real time updates using WebSocket
    - Email notifications for appointments
    - Calendar integration
@@ -262,26 +285,33 @@ Backend:
 
 ## Time Tracking
 
-Total time spent: 7 hours
+Total time spent: 8 hours
 
 Breakdown:
+
 - Initial setup and project structure: 1 hour
 - Backend development: 2 hours
 - Frontend development: 2 hours
 - Auth0 Integration: 1 hour
 - Testing and bug fixes: 0.5 hours
 - Documentation: 0.5 hours
+- Deployments: 1 hour
 
 ## Deployment
 
 Currently running locally. To deploy this application:
 
 1. Backend:
-   - Deployed to a AWS cloud provider EC2 (http://52.44.17.108)
+
+   - Deployed to a AWS cloud provider EC2 (https://demo.maasrecruit.ai)
    - Protected by Auth0 authentication
    - API endpoints secured with JWT validation
 
 2. Frontend:
-   - Deployed to AWS S3 (http://ruh-fe.s3-website-us-east-1.amazonaws.com)
+
+   - Deployed to AWS Amplify (https://main.d12dpajo88p4ah.amplifyapp.com/)
    - Set up CDN for static assets
-   - Auth0 configuration for production environment 
+   - Auth0 configuration for production environment
+
+3. Database:
+   - AWS RDS (PostgresSQL)
