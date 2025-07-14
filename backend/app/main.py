@@ -7,9 +7,11 @@ settings = get_settings()
 
 app = FastAPI(
     title=settings.APP_NAME,
-    openapi_url="/api/v1/openapi.json"
+    openapi_url="/api/v1/openapi.json",
+    redirect_slashes=False
 )
 
+app = FastAPI(redirect_slashes=False)
 # Set all CORS enabled origins
 app.add_middleware(
     CORSMiddleware,
