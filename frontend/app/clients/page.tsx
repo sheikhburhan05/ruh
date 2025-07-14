@@ -88,7 +88,7 @@ export default function ClientsPage() {
         ...(search && { search }),
       });
       
-      const response = await api.get<PaginatedResponse<Client>>(`/api/v1/clients?${params}`);
+      const response = await api.get<PaginatedResponse<Client>>(`/api/v1/clients/?${params}`);
       setClients(response.items);
       setPagination({
         total: response.total,
@@ -112,7 +112,7 @@ export default function ClientsPage() {
   const onSubmit = async (data: ClientFormData) => {
     try {
       setIsLoading(true);
-      await api.post('/api/v1/clients', {
+      await api.post('/api/v1/clients/', {
         ...data,
         created_at: new Date().toISOString(),
       });

@@ -57,12 +57,12 @@ export const clientsApi = {
   },
 
   getById: async (id: string) => {
-    const response = await api.get<Client>(`/clients/${id}`);
+    const response = await api.get<Client>(`/clients/${id}/`);
     return response.data;
   },
 
   create: async (data: Omit<Client, 'id' | 'updated_at'>) => {
-    const response = await api.post<Client>('/clients', data);
+    const response = await api.post<Client>('/clients/', data);
     return response.data;
   },
 };
@@ -74,17 +74,17 @@ export const appointmentsApi = {
   },
 
   getById: async (id: string) => {
-    const response = await api.get<Appointment>(`/appointments/${id}`);
+    const response = await api.get<Appointment>(`/appointments/${id}/`);
     return response.data;
   },
 
   create: async (data: Omit<Appointment, 'id'>) => {
-    const response = await api.post<Appointment>('/appointments', data);
+    const response = await api.post<Appointment>('/appointments/', data);
     return response.data;
   },
 
   update: async (id: string, data: Partial<Appointment>) => {
-    const response = await api.put<Appointment>(`/appointments/${id}`, data);
+    const response = await api.put<Appointment>(`/appointments/${id}/`, data);
     return response.data;
   },
 }; 

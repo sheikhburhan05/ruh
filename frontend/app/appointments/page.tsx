@@ -100,7 +100,7 @@ export default function AppointmentsPage() {
         ...(filters.status && { status: filters.status }),
       });
       
-      const response = await api.get<PaginatedResponse<Appointment>>(`/api/v1/appointments?${params}`);
+      const response = await api.get<PaginatedResponse<Appointment>>(`/api/v1/appointments/?${params}`);
       
       // Fetch client details for each appointment
       const appointmentsWithClients = await Promise.all(
@@ -133,7 +133,7 @@ export default function AppointmentsPage() {
 
   const fetchClients = async () => {
     try {
-      const response = await api.get<PaginatedResponse<Client>>('/api/v1/clients?page_size=100');
+      const response = await api.get<PaginatedResponse<Client>>('/api/v1/clients/?page_size=100');
       setClients(response.items);
     } catch (error) {
       console.error('Failed to fetch clients:', error);
@@ -158,7 +158,7 @@ export default function AppointmentsPage() {
   const handleCreateAppointment = async () => {
     try {
       setIsLoading(true);
-      await api.post('/api/v1/appointments', newAppointment);
+      await api.post('/api/v1/appointments/', newAppointment);
       setIsNewAppointmentModalOpen(false);
       setNewAppointment({
         client_id: '',
@@ -178,7 +178,7 @@ export default function AppointmentsPage() {
     if (!selectedAppointment) return;
     try {
       setIsLoading(true);
-      await api.put(`/api/v1/appointments/${selectedAppointment.id}`, selectedAppointment);
+      await api.put(`/api/v1/appointments/${selectedAppointment.id}/`, selectedAppointment);
       setIsEditAppointmentModalOpen(false);
       setSelectedAppointment(null);
       fetchAppointments(currentPage);
