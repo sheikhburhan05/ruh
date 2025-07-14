@@ -175,6 +175,12 @@ The platform provides the following API endpoints:
 - `/api/auth/callback` - Auth0 callback handling
 - `/api/auth/me` - Get user profile
 
+You can use the following testing credentials to login:
+- Email: sheikhburhan055@gmail.com
+- Password: Test@123
+
+Alternatively, you can continue with Google for login, it auto create new account.
+
 ### Clients
 - `GET /api/v1/clients` - List clients (with pagination)
 - `POST /api/v1/clients` - Create a new client
